@@ -48,6 +48,11 @@ void Contact::set_darkestSecret(std::string darkestSecret)
 
 // Getters for Contact class
 
+int Contact::get_index(void) const
+{
+	return this->_index;
+}
+
 std::string Contact::get_firstname(void) const
 {
 	return this->_firstname;

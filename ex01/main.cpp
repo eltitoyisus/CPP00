@@ -17,7 +17,9 @@ int main(void)
 	PhoneBook phonebook;
 	std::string input;
 
+	std::cout << std::endl;
 	std::cout << "📞 Welcome to the PhoneBook 📞" << std::endl;
+	std::cout << std::endl;
 	std::cout << "available commands: ADD SEARCH EXIT" << std::endl;
 	while (1)
 	{

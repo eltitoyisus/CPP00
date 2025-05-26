@@ -26,6 +26,8 @@ class Contact
 		void set_nickname(std::string nickname);
 		bool set_phoneNumber(std::string phoneNumber)
 		{
+			if (phoneNumber.empty())
+				return false;
 			int n = phoneNumber.length();
 			for (int i = 0; i < n; i++)
 			{
@@ -37,6 +39,7 @@ class Contact
 		}
 		void set_darkestSecret(std::string darkestSecret);
 
+		int get_index(void) const;
 		std::string get_firstname(void) const;
 		std::string get_lastname(void) const;
 		std::string get_nickname(void) const;

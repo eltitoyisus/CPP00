@@ -13,48 +13,77 @@
 #include "PhoneBook.hpp"
 #include <iomanip>
 
-PhoneBook::PhoneBook(void)
+PhoneBook::PhoneBook(void) : _index(0)
 {
-	std::cout << "PhoneBook constructor called" << std::endl;
+	// std::cout << "PhoneBook constructor called" << std::endl;
 }
-
-//TODO: Check no new contacts adding
 
 void PhoneBook::AddContact(void)
 {
 	Contact newContact;
-	this->_index = 0;
+	std::string input;
 
-	if (this->_index < 8)
+	while (true)
 	{
-		std::string input;
 		std::cout << "Enter first name: ";
 		std::getline(std::cin, input);
-		newContact.set_firstname(input);
+		if (!input.empty())
+		{
+			newContact.set_firstname(input);
+			break;
+		}
+		std::cout << "Field cannot be empty" << std::endl;
+	}
+
+	while (true)
+	{
 		std::cout << "Enter last name: ";
 		std::getline(std::cin, input);
-		newContact.set_lastname(input);
+		if (!input.empty())
+		{
+			newContact.set_lastname(input);
+			break;
+		}
+		std::cout << "Field cannot be empty" << std::endl;
+	}
+
+	while (true)
+	{
 		std::cout << "Enter nickname: ";
 		std::getline(std::cin, input);
-		newContact.set_nickname(input);
-		std::cout << "Enter phone number: ";
-		while (true)
+		if (!input.empty())
 		{
-			std::getline(std::cin, input);
-			if (newContact.set_phoneNumber(input))
-				break;
+			newContact.set_nickname(input);
+			break;
 		}
+		std::cout << "Field cannot be empty" << std::endl;
+	}
+
+	while (true)
+	{
+		std::cout << "Enter phone number: ";
+		std::getline(std::cin, input);
+		if (!input.empty() && newContact.set_phoneNumber(input))
+			break;
+		std::cout << "Invalid phone number" << std::endl;
+	}
+
+	while (true)
+	{
 		std::cout << "Enter darkest secret: ";
 		std::getline(std::cin, input);
-		newContact.set_darkestSecret(input);
-
-		this->_contacts[this->_index] = newContact;
-		this->_index++;
-		std::cout << this->_index;
+		if (!input.empty())
+		{
+			newContact.set_darkestSecret(input);
+			break;
+		}
+		std::cout << "Field cannot be empty" << std::endl;
 	}
-	if (this->_index > 7)
-		this->_contacts[7] = newContact;
+
+	this->_contacts[this->_index % 8] = newContact;
+	this->_index++;
 }
+
 
 void truncate_contact(std::string str)
 {
@@ -90,9 +119,14 @@ void PhoneBook::SearchContact(void)
 	}
 	std::cout << "Select index to search: ";
 	std::getline(std::cin, input);
-	if (input >= "0" && input <= "7")
+	if (input.empty() || !std::isdigit(static_cast<unsigned char>(input[0])))
 	{
-		int i = 0;
+		std::cout << "Error: Invalid input" << std::endl;
+		return;
+	}
+	int i = input[0] - '0';
+	if (i < this->_index && i < 8)
+	{
 		std::cout << std::setw(10) << input << " |";
 		truncate_contact(this->_contacts[i].get_firstname());
 		std::cout << " |";
@@ -108,5 +142,5 @@ void PhoneBook::SearchContact(void)
 
 PhoneBook::~PhoneBook(void)
 {
-	std::cout << "PhoneBook destructor called" << std::endl;
+	// std::cout << "PhoneBook destructor called" << std::endl;
 }
