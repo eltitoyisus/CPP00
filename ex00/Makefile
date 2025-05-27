@@ -1,16 +1,29 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/05/20 22:15:59 by jramos-a          #+#    #+#              #
+#    Updated: 2025/05/20 22:15:59 by jramos-a         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
+CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = megaphone.cpp
 OBJS = $(SRCS:.cpp=.o)
-NAME = megaphone
+NAME = Megaphone
+
+SRCS = megaphone.cpp
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CXX) $(CXXFLAGS) -o $@ $^
+	@$(CPP) $(CPPFLAGS) -o $@ $^
 
 %.o: %.cpp
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
+	@$(CPP) $(CPPFLAGS) -c $< -o $@
 
 clean:
 	@rm -f $(OBJS)

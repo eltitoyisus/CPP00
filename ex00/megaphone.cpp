@@ -21,14 +21,14 @@ int main(int argc, char **argv)
 		{
 			for (int j = 0; argv[i][j]; j++)
 			{
-				std::std::cout << (char)toupper(argv[i][j]);
+				std::cout << (char)toupper(argv[i][j]);
 			}
 		}
 	}
 	else
 	{
-		std::std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
 	}
-	std::std::cout << std::std::endl;
+	std::cout << std::endl;
 	return 0;
 }
