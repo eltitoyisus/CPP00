@@ -80,8 +80,14 @@ void PhoneBook::AddContact(void)
 		std::cout << "Field cannot be empty" << std::endl;
 	}
 
+	if (this->_index > 7)
+		this->_contacts[7] = newContact;
+
+	else
+	{
 	this->_contacts[this->_index % 8] = newContact;
 	this->_index++;
+	}
 }
 
 

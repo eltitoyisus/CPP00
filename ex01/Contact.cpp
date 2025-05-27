@@ -39,6 +39,20 @@ void Contact::set_nickname(std::string nickname)
 	this->_nickname = nickname;
 }
 
+bool Contact::set_phoneNumber(std::string phoneNumber)
+{
+			if (phoneNumber.empty())
+				return false;
+			int n = phoneNumber.length();
+			for (int i = 0; i < n; i++)
+			{
+				if (!std::isdigit(static_cast<unsigned char>(phoneNumber[i])))
+					return false;
+			}
+			this->_phoneNumber = phoneNumber;
+			return true;
+}
+
 void Contact::set_darkestSecret(std::string darkestSecret)
 {
 	this->_darkestSecret = darkestSecret;
@@ -77,23 +91,6 @@ std::string Contact::get_darkestSecret(void) const
 {
 	return this->_darkestSecret;
 }
-
-// int main()
-// {
-// 	Contact contact;
-
-// 	contact.set_firstname("John");
-// 	contact.set_lastname("Doe");
-// 	contact.set_nickname("Johnny");
-// 	contact.set_phoneNumber("asd");
-// 	contact.set_darkestSecret("Loves pineapple on pizza");
-// 	std::cout << "First Name: " << contact.get_firstname() << std::endl;
-// 	std::cout << "Last Name: " << contact.get_lastname() << std::endl;
-// 	std::cout << "Nickname: " << contact.get_nickname() << std::endl;
-// 	std::cout << "Phone Number: " << contact.get_phoneNumber() << std::endl;
-// 	std::cout << "Darkest Secret: " << contact.get_darkestSecret() << std::endl;
-// 	return 0;
-// }
 
 Contact::~Contact(void)
 {

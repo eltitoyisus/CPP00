@@ -24,19 +24,7 @@ class Contact
 		void set_firstname(std::string firstname);
 		void set_lastname(std::string lastname);
 		void set_nickname(std::string nickname);
-		bool set_phoneNumber(std::string phoneNumber)
-		{
-			if (phoneNumber.empty())
-				return false;
-			int n = phoneNumber.length();
-			for (int i = 0; i < n; i++)
-			{
-				if (!std::isdigit(static_cast<unsigned char>(phoneNumber[i])))
-					return false;
-			}
-			this->_phoneNumber = phoneNumber;
-			return true;
-		}
+		bool set_phoneNumber(std::string phoneNumber);
 		void set_darkestSecret(std::string darkestSecret);
 
 		int get_index(void) const;
